@@ -1,1 +1,1 @@
-# qasm-2-cluster-compiler
+# qasm-to-photonic-cluster-compiler

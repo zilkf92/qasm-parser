@@ -1,25 +1,12 @@
-%{
-    ****** C stuff (headers, declarations, variables, etc.) ******
-    #include <stdio.h>
-    #include "test.tab.h"
-    void showError();
-}
-
-****** regular expressions ******
-numbers     ([0-9])+
-alpha       ([a-zA-Z])+
-
+/*recognize tokens for the calculator and print them out*/
 %%
-****** token specifications ******
-"hello"     {return (STRING);}
-{alpha}     {sscanf(yytext, "%s", yylval.name); return (STRING);}
-{numbers}   {yylval.number = atoi(yytext); return(NUM);}
-";"         {return (SEMICOLON);}
-.           {showError(); return(OTHER);}
-
+"+"     { printf("PLUS\n"); }
+"-"     { printf("MINUS\n"); }
+"*"     { printf("TIMES\n"); }
+"/"     { printf("DIVIDE\n"); }
+"|"     { printf("ABS\n"); }
+[0-9]+  { printf("NUMBER %s\n", yytext); }
+\n      { printf("NEWLINE\n"); }
+[ \t]   { }
+.       { printf("Mystery character %s\n", yytext); }
 %%
-
-****** C functions (can be main or others) ******
-void showError(){
-    printf("Other input");
-}

@@ -445,7 +445,20 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "test.l"
 /*recognize tokens for the calculator and print them out*/
-#line 449 "lex.yy.c"
+#line 3 "test.l"
+    enum yytokentype {
+        NUMBER = 258,
+        ADD = 259,
+        SUB = 260,
+        MUL = 261,
+        DIV = 262,
+        ABS = 263,
+        EOL = 264
+    };
+
+    int yylval;
+#line 461 "lex.yy.c"
+#line 462 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -662,9 +675,9 @@ YY_DECL
 		}
 
 	{
-#line 2 "test.l"
+#line 16 "test.l"
 
-#line 668 "lex.yy.c"
+#line 681 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -723,56 +736,56 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 3 "test.l"
-{ printf("PLUS\n"); }
+#line 17 "test.l"
+{ return ADD; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 4 "test.l"
-{ printf("MINUS\n"); }
+#line 18 "test.l"
+{ return SUB; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 5 "test.l"
-{ printf("TIMES\n"); }
+#line 19 "test.l"
+{ return MUL; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 6 "test.l"
-{ printf("DIVIDE\n"); }
+#line 20 "test.l"
+{ return DIV; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 7 "test.l"
-{ printf("ABS\n"); }
+#line 21 "test.l"
+{ return ABS; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 8 "test.l"
-{ printf("NUMBER %s\n", yytext); }
+#line 22 "test.l"
+{ yylval = atoi(yytext); return NUMBER; }
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 9 "test.l"
-{ printf("NEWLINE\n"); }
+#line 23 "test.l"
+{ return EOL; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 10 "test.l"
-{ }
+#line 24 "test.l"
+{ /* ignore whitespace */ }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 11 "test.l"
-{ printf("Mystery character %s\n", yytext); }
+#line 25 "test.l"
+{ printf("Mystery character %c\n", *yytext); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 12 "test.l"
+#line 26 "test.l"
 ECHO;
 	YY_BREAK
-#line 776 "lex.yy.c"
+#line 789 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1777,6 +1790,16 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 12 "test.l"
+#line 26 "test.l"
 
 
+main(int argc, char **argv)
+{
+    int tok;
+
+    while(tok = yylex()) {
+        printf("%d", tok);
+        if(tok == NUMBER) printf(" = %d\n", yylval);
+        else printf("\n");
+    }
+}

@@ -33,18 +33,26 @@ prog: /* nothing */
 
 stmts:
     operation qubit {
-        printf("Your entered a stmt - %s", $1);
+        printf("You entered a stmt - %s", $1);
     }
 ;
 
 operation:
-    RZ arg
+    RZ arg {
+        printf("You entered a RZ operation");
+    }
     |
-    RX arg
+    RX arg {
+        printf("You entered a RX operation")
+    }
     |
-    HAD
+    HAD {
+        printf("You entered a HAD operation")
+    }
     |
-    CZ
+    CZ {
+        printf("You entered a CZ operation")
+    }
 ;
 
 qubit:

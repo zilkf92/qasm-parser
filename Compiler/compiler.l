@@ -4,10 +4,10 @@
 %}
 
 %%
-"rz"     { return RZ; }
-"rx"     { return RX; }
+"rz"    { return RZ; }
+"rx"    { return RX; }
 "h"     { return HAD; }
-"cz"     { return CZ; }
+"cz"    { return CZ; }
 "q"     { return QUBIT; }
 [0-9]+  { return NUMBER; }
 "["     { return LEFTBRACK; }

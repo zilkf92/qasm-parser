@@ -8,7 +8,10 @@
 "*"     { return MUL; }
 "/"     { return DIV; }
 "|"     { return ABS; }
-[0-9]+     { return NUMBER; }
-\n    { return EOL; }
-[ \t]     { /* ignore whitespace */ }
-.      { printf("Mistery character"); }
+"("     { return OP; }
+")"     { return CP; }
+"//".*  { /* ignore comments */}
+[0-9]+  { return NUMBER; }
+\n      { return EOL; }
+[ \t]   { /* ignore whitespace */ }
+.       { printf("Mistery character"); }

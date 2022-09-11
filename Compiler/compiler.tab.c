@@ -511,8 +511,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    26,    26,    27,    35,    41,    43,    45,    47,    51,
-      55,    59
+       0,    26,    26,    27,    35,    41,    45,    49,    53,    59,
+      63,    67
 };
 #endif
 
@@ -1318,13 +1318,45 @@ yyreduce:
   case 4:
 #line 35 "compiler.y"
                     {
-        printf("Your entered a stmt - %s", yyvsp[-1]);
+        printf("You entered a stmt - %s", yyvsp[-1]);
     }
 #line 1324 "compiler.tab.c"
     break;
 
+  case 5:
+#line 41 "compiler.y"
+           {
+        printf("You entered a RZ operation");
+    }
+#line 1332 "compiler.tab.c"
+    break;
 
-#line 1328 "compiler.tab.c"
+  case 6:
+#line 45 "compiler.y"
+           {
+        printf("You entered a RX operation")
+    }
+#line 1340 "compiler.tab.c"
+    break;
+
+  case 7:
+#line 49 "compiler.y"
+        {
+        printf("You entered a HAD operation")
+    }
+#line 1348 "compiler.tab.c"
+    break;
+
+  case 8:
+#line 53 "compiler.y"
+       {
+        printf("You entered a CZ operation")
+    }
+#line 1356 "compiler.tab.c"
+    break;
+
+
+#line 1360 "compiler.tab.c"
 
       default: break;
     }
@@ -1556,7 +1588,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 62 "compiler.y"
+#line 70 "compiler.y"
 
 
 int yyerror(char *s)

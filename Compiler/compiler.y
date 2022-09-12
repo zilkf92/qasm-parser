@@ -8,9 +8,10 @@
 %}
 
 /* declare tokens */
-%token NUMBER
+%token INT
 %token RZ RX HAD CZ
 %token QUBIT
+%token ADD SUB MUL DIV DEC PI
 %token LEFTBRACK RIGHTBRACK COMMA LEFTPARENTH RIGHTPARENTH EOL
 
 
@@ -31,41 +32,43 @@ prog: /* nothing */
 /* syntactic glue to put the grammar together */
 
 
-stmts:
-    operation qubit {
-        printf("You entered a stmt - %s", $1);
+stmts: singleqbgate {
+        printf("You entered a Single Qubit Gate - %s", $1);
+    }
+    | twoqbgate {
+        printf("You entered a Two Qubit Gate - %s", $1);
     }
 ;
 
-operation:
-    RZ arg {
-        printf("You entered a RZ operation");
+singleqbgate: RZ arg qubit{
+        printf("You entered a RZ operation \n");
     }
     |
-    RX arg {
-        printf("You entered a RX operation")
+    RX arg qubit{
+        printf("You entered a RX operation \n");
     }
     |
-    HAD {
-        printf("You entered a HAD operation")
-    }
-    |
-    CZ {
-        printf("You entered a CZ operation")
+    HAD qubit{
+        printf("You entered a HAD operation \n");
     }
 ;
 
-qubit:
-    QUBIT alloc
+twoqbgate: CZ qubit COMMA qubit{
+        printf("You entered a CZ operation \n");
+    }
 ;
 
-alloc:
-    LEFTBRACK NUMBER RIGHTBRACK
+qubit: QUBIT LEFTBRACK INT RIGHTBRACK
 ;
 
-arg:
-    LEFTPARENTH NUMBER RIGHTPARENTH
+arg: LEFTPARENTH INT RIGHTPARENTH
+| LEFTPARENTH float RIGHTPARENTH
 ;
+
+float: INT DEC INT
+| PI
+;
+
 
 %%
 

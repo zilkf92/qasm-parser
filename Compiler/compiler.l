@@ -9,7 +9,13 @@
 "h"     { return HAD; }
 "cz"    { return CZ; }
 "q"     { return QUBIT; }
-[0-9]+  { return NUMBER; }
+[0-9]+  { return INT; }
+"pi"    { return PI; }
+"+"     { return ADD; }
+"-"     { return SUB; }
+"*"     { return MUL; }
+"/"     { return DIV; }
+"."     { return DEC; }
 "["     { return LEFTBRACK; }
 "]"     { return RIGHTBRACK; }
 "("     { return LEFTPARENTH; }
@@ -17,5 +23,5 @@
 ","     { return COMMA; }
 \n      { return EOL; }
 [ \t]   { /* ignore whitespace */ }
-.       { printf("Mystery character"); }
+.       { printf("Unknown character \n"); }
 

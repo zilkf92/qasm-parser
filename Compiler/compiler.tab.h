@@ -49,18 +49,24 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    NUMBER = 258,
+    INT = 258,
     RZ = 259,
     RX = 260,
     HAD = 261,
     CZ = 262,
     QUBIT = 263,
-    LEFTBRACK = 264,
-    RIGHTBRACK = 265,
-    COMMA = 266,
-    LEFTPARENTH = 267,
-    RIGHTPARENTH = 268,
-    EOL = 269
+    ADD = 264,
+    SUB = 265,
+    MUL = 266,
+    DIV = 267,
+    DEC = 268,
+    PI = 269,
+    LEFTBRACK = 270,
+    RIGHTBRACK = 271,
+    COMMA = 272,
+    LEFTPARENTH = 273,
+    RIGHTPARENTH = 274,
+    EOL = 275
   };
 #endif
 

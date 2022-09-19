@@ -461,7 +461,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   37
+#define YYLAST   40
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  22
@@ -470,7 +470,7 @@ union yyalloc
 /* YYNRULES -- Number of rules.  */
 #define YYNRULES  20
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  38
+#define YYNSTATES  40
 
 #define YYUNDEFTOK  2
 #define YYMAXUTOK   276
@@ -520,8 +520,8 @@ static const yytype_int8 yytranslate[] =
 static const yytype_int8 yyrline[] =
 {
        0,    29,    29,    30,    36,    39,    44,    48,    52,    57,
-      62,    66,    69,    74,    77,    80,    83,    88,    89,    90,
-      91
+      62,    66,    70,    75,    78,    81,    84,    89,    90,    91,
+      92
 };
 #endif
 
@@ -549,7 +549,7 @@ static const yytype_int16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF (-10)
+#define YYPACT_NINF (-12)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -563,10 +563,10 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -10,     9,   -10,    -9,    -9,     3,     3,     8,   -10,   -10,
-       4,     3,     3,    10,   -10,    11,   -10,     7,   -10,    -8,
-     -10,   -10,    23,     3,    27,   -10,   -10,   -10,   -10,   -10,
-     -10,     5,    15,   -10,   -10,    19,    12,   -10
+     -12,    10,   -12,   -11,   -11,     3,     3,     5,    -5,     9,
+       4,     3,     3,    14,   -12,    15,   -12,   -12,   -12,     8,
+     -12,    -8,   -12,   -12,    27,     3,    28,   -12,   -12,   -12,
+     -12,   -12,   -12,     6,    17,   -12,   -12,    21,    13,   -12
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -574,22 +574,22 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       2,     0,     1,     0,     0,     0,     0,     0,     4,     5,
-       0,     0,     0,     0,     8,     0,     3,    13,    15,     0,
-       6,     7,     0,     0,     0,    11,    17,    18,    19,    20,
-      12,     0,     0,     9,    14,    13,    16,    10
+       2,     0,     1,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     8,     0,     3,     4,     5,    13,
+      15,     0,     6,     7,     0,     0,     0,    11,    17,    18,
+      19,    20,    12,     0,     0,     9,    14,    13,    16,    10
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -10,   -10,   -10,   -10,   -10,    -6,    29,     6,   -10
+     -12,   -12,   -12,   -12,   -12,    -6,    31,     7,   -12
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     1,     7,     8,     9,    14,    11,    19,    31
+      -1,     1,     7,     8,     9,    14,    11,    21,    33
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -597,18 +597,20 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      15,    26,    27,    28,    29,    20,    21,    17,    35,     2,
-      10,    13,    30,     3,     4,     5,     6,    33,    18,    18,
-      24,    26,    27,    28,    29,    22,    32,    25,    23,    16,
-      34,    37,    24,    12,     0,     0,     0,    36
+      15,    28,    29,    30,    31,    22,    23,    19,    10,    37,
+       2,    13,    32,    17,     3,     4,     5,     6,    20,    35,
+      20,    26,    28,    29,    30,    31,    16,    18,    27,    24,
+      34,    36,    25,    39,    26,    12,     0,     0,     0,     0,
+      38
 };
 
 static const yytype_int8 yycheck[] =
 {
-       6,     9,    10,    11,    12,    11,    12,     3,     3,     0,
-      19,     8,    20,     4,     5,     6,     7,    23,    14,    14,
-      13,     9,    10,    11,    12,    15,     3,    20,    17,    21,
-       3,    16,    13,     4,    -1,    -1,    -1,    31
+       6,     9,    10,    11,    12,    11,    12,     3,    19,     3,
+       0,     8,    20,    18,     4,     5,     6,     7,    14,    25,
+      14,    13,     9,    10,    11,    12,    21,    18,    20,    15,
+       3,     3,    17,    16,    13,     4,    -1,    -1,    -1,    -1,
+      33
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -616,9 +618,9 @@ static const yytype_int8 yycheck[] =
 static const yytype_int8 yystos[] =
 {
        0,    23,     0,     4,     5,     6,     7,    24,    25,    26,
-      19,    28,    28,     8,    27,    27,    21,     3,    14,    29,
-      27,    27,    15,    17,    13,    20,     9,    10,    11,    12,
-      20,    30,     3,    27,     3,     3,    29,    16
+      19,    28,    28,     8,    27,    27,    21,    18,    18,     3,
+      14,    29,    27,    27,    15,    17,    13,    20,     9,    10,
+      11,    12,    20,    30,     3,    27,     3,     3,    29,    16
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -632,7 +634,7 @@ static const yytype_int8 yyr1[] =
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     0,     3,     1,     1,     3,     3,     2,     4,
+       0,     2,     0,     3,     2,     2,     3,     3,     2,     4,
        4,     3,     3,     1,     3,     1,     3,     1,     1,     1,
        1
 };
@@ -1332,23 +1334,23 @@ yyreduce:
   case 3:
 #line 30 "compiler.y"
                { printf("= %d\n", yyvsp[-2]); }
-#line 1336 "compiler.tab.c"
+#line 1338 "compiler.tab.c"
     break;
 
   case 4:
 #line 36 "compiler.y"
-                  {
-        printf("You entered a Single Qubit Gate - %s", yyvsp[0]);
+                           {
+        printf("You entered a Single Qubit Gate");
     }
-#line 1344 "compiler.tab.c"
+#line 1346 "compiler.tab.c"
     break;
 
   case 5:
 #line 39 "compiler.y"
-            {
-    printf("You entered a Two Qubit Gate - %s", yyvsp[0]);
+                     {
+    printf("You entered a Two Qubit Gate");
 }
-#line 1352 "compiler.tab.c"
+#line 1354 "compiler.tab.c"
     break;
 
   case 6:
@@ -1356,7 +1358,7 @@ yyreduce:
                              {
         printf("You entered a RZ operation \n");
     }
-#line 1360 "compiler.tab.c"
+#line 1362 "compiler.tab.c"
     break;
 
   case 7:
@@ -1364,7 +1366,7 @@ yyreduce:
                    {
         printf("You entered a RX operation \n");
     }
-#line 1368 "compiler.tab.c"
+#line 1370 "compiler.tab.c"
     break;
 
   case 8:
@@ -1372,7 +1374,7 @@ yyreduce:
                 {
         printf("You entered a HAD operation \n");
     }
-#line 1376 "compiler.tab.c"
+#line 1378 "compiler.tab.c"
     break;
 
   case 9:
@@ -1380,67 +1382,68 @@ yyreduce:
                                     {
         printf("You entered a CZ operation \n");
     }
-#line 1384 "compiler.tab.c"
+#line 1386 "compiler.tab.c"
     break;
 
   case 10:
 #line 62 "compiler.y"
                                         {
-    printf("You entered qubit no \n", yyvsp[-1]);
+    printf("You entered qubit no");
 }
-#line 1392 "compiler.tab.c"
+#line 1394 "compiler.tab.c"
     break;
 
   case 11:
 #line 66 "compiler.y"
                                   {
         printf("You entered an INT in arg \n");
+        printf("%d", yyvsp[-1] );
     }
-#line 1400 "compiler.tab.c"
+#line 1403 "compiler.tab.c"
     break;
 
   case 12:
-#line 69 "compiler.y"
+#line 70 "compiler.y"
                                  {
         printf("You entered a float in arg \n");
     }
-#line 1408 "compiler.tab.c"
+#line 1411 "compiler.tab.c"
     break;
 
   case 13:
-#line 74 "compiler.y"
+#line 75 "compiler.y"
            {
         printf("You entered an INT \n");
     }
-#line 1416 "compiler.tab.c"
+#line 1419 "compiler.tab.c"
     break;
 
   case 14:
-#line 77 "compiler.y"
+#line 78 "compiler.y"
               {
         printf("You entered a float \n");
     }
-#line 1424 "compiler.tab.c"
+#line 1427 "compiler.tab.c"
     break;
 
   case 15:
-#line 80 "compiler.y"
+#line 81 "compiler.y"
      {
         printf("You entered PI \n");
     }
-#line 1432 "compiler.tab.c"
+#line 1435 "compiler.tab.c"
     break;
 
   case 16:
-#line 83 "compiler.y"
+#line 84 "compiler.y"
                     {
         printf("You entered a calculation \n");
     }
-#line 1440 "compiler.tab.c"
+#line 1443 "compiler.tab.c"
     break;
 
 
-#line 1444 "compiler.tab.c"
+#line 1447 "compiler.tab.c"
 
       default: break;
     }
@@ -1672,12 +1675,12 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 94 "compiler.y"
+#line 95 "compiler.y"
 
 
 int yyerror(char *s)
 {
-    printf(stderr, "Syntax Error on line %s\n", s);
+    fprintf(stderr, "Syntax Error on line %s\n", s);
     return 0;
 }
 

@@ -33,11 +33,11 @@ prog: /* nothing */
 /* rest of the rules implement translation */
 /* syntactic glue to put the grammar together */
 
-exp: singleqbgate {
-        printf("You entered a Single Qubit Gate - %s", $1);
+exp: singleqbgate SEMICOLON{
+        printf("You entered a Single Qubit Gate");
     }
-| twoqbgate {
-    printf("You entered a Two Qubit Gate - %s", $1);
+| twoqbgate SEMICOLON{
+    printf("You entered a Two Qubit Gate");
 }
 ;
 
@@ -60,11 +60,12 @@ twoqbgate: CZ qubitno COMMA qubitno {
 ;
 
 qubitno: QUBIT LEFTBRACK INT RIGHTBRACK {
-    printf("You entered qubit no \n", $3);
+    printf("You entered qubit no");
 };
 
 arg: LEFTPARENTH INT RIGHTPARENTH {
         printf("You entered an INT in arg \n");
+        printf("%d", $2 );
     }
 | LEFTPARENTH float RIGHTPARENTH {
         printf("You entered a float in arg \n");
@@ -95,7 +96,7 @@ arith: ADD
 
 int yyerror(char *s)
 {
-    printf(stderr, "Syntax Error on line %s\n", s);
+    fprintf(stderr, "Syntax Error on line %s\n", s);
     return 0;
 }
 

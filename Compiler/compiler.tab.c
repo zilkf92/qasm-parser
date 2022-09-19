@@ -136,9 +136,10 @@ extern int yydebug;
     LEFTBRACK = 270,
     RIGHTBRACK = 271,
     COMMA = 272,
-    LEFTPARENTH = 273,
-    RIGHTPARENTH = 274,
-    EOL = 275
+    SEMICOLON = 273,
+    LEFTPARENTH = 274,
+    RIGHTPARENTH = 275,
+    EOL = 276
   };
 #endif
 
@@ -460,10 +461,10 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   35
+#define YYLAST   37
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  21
+#define YYNTOKENS  22
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  9
 /* YYNRULES -- Number of rules.  */
@@ -472,7 +473,7 @@ union yyalloc
 #define YYNSTATES  38
 
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   275
+#define YYMAXUTOK   276
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -511,16 +512,16 @@ static const yytype_int8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
-      15,    16,    17,    18,    19,    20
+      15,    16,    17,    18,    19,    20,    21
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    27,    27,    28,    34,    37,    42,    46,    50,    55,
-      60,    64,    65,    67,    68,    69,    70,    72,    73,    74,
-      75
+       0,    29,    29,    30,    36,    39,    44,    48,    52,    57,
+      62,    66,    69,    74,    77,    80,    83,    88,    89,    90,
+      91
 };
 #endif
 
@@ -531,8 +532,9 @@ static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "INT", "RZ", "RX", "HAD", "CZ", "QUBIT",
   "ADD", "SUB", "MUL", "DIV", "DEC", "PI", "LEFTBRACK", "RIGHTBRACK",
-  "COMMA", "LEFTPARENTH", "RIGHTPARENTH", "EOL", "$accept", "prog", "exp",
-  "singleqbgate", "twoqbgate", "qubitno", "arg", "float", "arith", YY_NULLPTR
+  "COMMA", "SEMICOLON", "LEFTPARENTH", "RIGHTPARENTH", "EOL", "$accept",
+  "prog", "exp", "singleqbgate", "twoqbgate", "qubitno", "arg", "float",
+  "arith", YY_NULLPTR
 };
 #endif
 
@@ -543,11 +545,11 @@ static const yytype_int16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
-     275
+     275,   276
 };
 # endif
 
-#define YYPACT_NINF (-15)
+#define YYPACT_NINF (-10)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -561,10 +563,10 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -15,     3,   -15,   -14,   -14,     6,     6,    -9,   -15,   -15,
-      -2,     6,     6,     0,   -15,     5,   -15,    10,   -15,     9,
-     -15,   -15,    13,     6,    27,   -15,   -15,   -15,   -15,   -15,
-     -15,    -1,    16,   -15,   -15,    18,    15,   -15
+     -10,     9,   -10,    -9,    -9,     3,     3,     8,   -10,   -10,
+       4,     3,     3,    10,   -10,    11,   -10,     7,   -10,    -8,
+     -10,   -10,    23,     3,    27,   -10,   -10,   -10,   -10,   -10,
+     -10,     5,    15,   -10,   -10,    19,    12,   -10
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -581,7 +583,7 @@ static const yytype_int8 yydefact[] =
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -15,   -15,   -15,   -15,   -15,    -6,    29,     4,   -15
+     -10,   -10,   -10,   -10,   -10,    -6,    29,     6,   -10
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -595,36 +597,36 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      15,    17,    35,     2,    10,    20,    21,     3,     4,     5,
-       6,    16,    18,    18,    13,    22,    32,    33,    26,    27,
-      28,    29,    23,    24,    26,    27,    28,    29,    30,    25,
-      34,    24,    37,    12,     0,    36
+      15,    26,    27,    28,    29,    20,    21,    17,    35,     2,
+      10,    13,    30,     3,     4,     5,     6,    33,    18,    18,
+      24,    26,    27,    28,    29,    22,    32,    25,    23,    16,
+      34,    37,    24,    12,     0,     0,     0,    36
 };
 
 static const yytype_int8 yycheck[] =
 {
-       6,     3,     3,     0,    18,    11,    12,     4,     5,     6,
-       7,    20,    14,    14,     8,    15,     3,    23,     9,    10,
-      11,    12,    17,    13,     9,    10,    11,    12,    19,    19,
-       3,    13,    16,     4,    -1,    31
+       6,     9,    10,    11,    12,    11,    12,     3,     3,     0,
+      19,     8,    20,     4,     5,     6,     7,    23,    14,    14,
+      13,     9,    10,    11,    12,    15,     3,    20,    17,    21,
+       3,    16,    13,     4,    -1,    -1,    -1,    31
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,    22,     0,     4,     5,     6,     7,    23,    24,    25,
-      18,    27,    27,     8,    26,    26,    20,     3,    14,    28,
-      26,    26,    15,    17,    13,    19,     9,    10,    11,    12,
-      19,    29,     3,    26,     3,     3,    28,    16
+       0,    23,     0,     4,     5,     6,     7,    24,    25,    26,
+      19,    28,    28,     8,    27,    27,    21,     3,    14,    29,
+      27,    27,    15,    17,    13,    20,     9,    10,    11,    12,
+      20,    30,     3,    27,     3,     3,    29,    16
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    21,    22,    22,    23,    23,    24,    24,    24,    25,
-      26,    27,    27,    28,    28,    28,    28,    29,    29,    29,
-      29
+       0,    22,    23,    23,    24,    24,    25,    25,    25,    26,
+      27,    28,    28,    29,    29,    29,    29,    30,    30,    30,
+      30
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -1328,69 +1330,117 @@ yyreduce:
   switch (yyn)
     {
   case 3:
-#line 28 "compiler.y"
+#line 30 "compiler.y"
                { printf("= %d\n", yyvsp[-2]); }
-#line 1334 "compiler.tab.c"
+#line 1336 "compiler.tab.c"
     break;
 
   case 4:
-#line 34 "compiler.y"
+#line 36 "compiler.y"
                   {
         printf("You entered a Single Qubit Gate - %s", yyvsp[0]);
     }
-#line 1342 "compiler.tab.c"
+#line 1344 "compiler.tab.c"
     break;
 
   case 5:
-#line 37 "compiler.y"
+#line 39 "compiler.y"
             {
     printf("You entered a Two Qubit Gate - %s", yyvsp[0]);
 }
-#line 1350 "compiler.tab.c"
+#line 1352 "compiler.tab.c"
     break;
 
   case 6:
-#line 42 "compiler.y"
+#line 44 "compiler.y"
                              {
         printf("You entered a RZ operation \n");
     }
-#line 1358 "compiler.tab.c"
+#line 1360 "compiler.tab.c"
     break;
 
   case 7:
-#line 46 "compiler.y"
+#line 48 "compiler.y"
                    {
         printf("You entered a RX operation \n");
     }
-#line 1366 "compiler.tab.c"
+#line 1368 "compiler.tab.c"
     break;
 
   case 8:
-#line 50 "compiler.y"
+#line 52 "compiler.y"
                 {
         printf("You entered a HAD operation \n");
     }
-#line 1374 "compiler.tab.c"
+#line 1376 "compiler.tab.c"
     break;
 
   case 9:
-#line 55 "compiler.y"
+#line 57 "compiler.y"
                                     {
         printf("You entered a CZ operation \n");
     }
-#line 1382 "compiler.tab.c"
+#line 1384 "compiler.tab.c"
     break;
 
   case 10:
-#line 60 "compiler.y"
+#line 62 "compiler.y"
                                         {
     printf("You entered qubit no \n", yyvsp[-1]);
 }
-#line 1390 "compiler.tab.c"
+#line 1392 "compiler.tab.c"
+    break;
+
+  case 11:
+#line 66 "compiler.y"
+                                  {
+        printf("You entered an INT in arg \n");
+    }
+#line 1400 "compiler.tab.c"
+    break;
+
+  case 12:
+#line 69 "compiler.y"
+                                 {
+        printf("You entered a float in arg \n");
+    }
+#line 1408 "compiler.tab.c"
+    break;
+
+  case 13:
+#line 74 "compiler.y"
+           {
+        printf("You entered an INT \n");
+    }
+#line 1416 "compiler.tab.c"
+    break;
+
+  case 14:
+#line 77 "compiler.y"
+              {
+        printf("You entered a float \n");
+    }
+#line 1424 "compiler.tab.c"
+    break;
+
+  case 15:
+#line 80 "compiler.y"
+     {
+        printf("You entered PI \n");
+    }
+#line 1432 "compiler.tab.c"
+    break;
+
+  case 16:
+#line 83 "compiler.y"
+                    {
+        printf("You entered a calculation \n");
+    }
+#line 1440 "compiler.tab.c"
     break;
 
 
-#line 1394 "compiler.tab.c"
+#line 1444 "compiler.tab.c"
 
       default: break;
     }
@@ -1622,7 +1672,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 78 "compiler.y"
+#line 94 "compiler.y"
 
 
 int yyerror(char *s)

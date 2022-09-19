@@ -21,6 +21,7 @@
 "("     { return LEFTPARENTH; }
 ")"     { return RIGHTPARENTH; }
 ","     { return COMMA; }
+";"     { return SEMICOLON; }
 \n      { return EOL; }
 [ \t]   { /* ignore whitespace */ }
 .       { printf("Unknown character \n"); }

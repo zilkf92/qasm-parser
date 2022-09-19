@@ -64,9 +64,10 @@ extern int yydebug;
     LEFTBRACK = 270,
     RIGHTBRACK = 271,
     COMMA = 272,
-    LEFTPARENTH = 273,
-    RIGHTPARENTH = 274,
-    EOL = 275
+    SEMICOLON = 273,
+    LEFTPARENTH = 274,
+    RIGHTPARENTH = 275,
+    EOL = 276
   };
 #endif
 

@@ -14,7 +14,7 @@
 %token RZ RX HAD CZ
 %token QUBIT
 %token ADD SUB MUL DIV DEC PI
-%token LEFTBRACK RIGHTBRACK COMMA LEFTPARENTH RIGHTPARENTH EOL
+%token LEFTBRACK RIGHTBRACK COMMA SEMICOLON LEFTPARENTH RIGHTPARENTH EOL
 
 
 %%
@@ -63,13 +63,27 @@ qubitno: QUBIT LEFTBRACK INT RIGHTBRACK {
     printf("You entered qubit no \n", $3);
 };
 
-arg: LEFTPARENTH INT RIGHTPARENTH
-| LEFTPARENTH float RIGHTPARENTH ;
+arg: LEFTPARENTH INT RIGHTPARENTH {
+        printf("You entered an INT in arg \n");
+    }
+| LEFTPARENTH float RIGHTPARENTH {
+        printf("You entered a float in arg \n");
+    }
+;
 
-float: INT 
-| INT DEC INT
-| PI
-| float arith float ;
+float: INT {
+        printf("You entered an INT \n");
+    }
+| INT DEC INT {
+        printf("You entered a float \n");
+    }
+| PI {
+        printf("You entered PI \n");
+    }
+| float arith float {
+        printf("You entered a calculation \n");
+    }
+;
 
 arith: ADD
 | SUB

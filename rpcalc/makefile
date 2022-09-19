@@ -1,0 +1,1 @@
+cc rpcalc.tab.c -lm -o rpcalc

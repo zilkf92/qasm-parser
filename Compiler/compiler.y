@@ -8,6 +8,8 @@
 %}
 
 /* declare tokens */
+/* This section provides information to Bison about the token types */
+/* Each terminal symbol that is not a single-character literal must be declared */
 %token INT
 %token RZ RX HAD CZ
 %token QUBIT
@@ -25,49 +27,54 @@
 /* implement loop that reads an expression terminated by a new line and prints its value */
 
 prog: /* nothing */
-    | prog stmts EOL { printf("= %d\n", $2); }
+| prog exp EOL { printf("= %d\n", $1); }
 ;
 
 /* rest of the rules implement translation */
 /* syntactic glue to put the grammar together */
 
-
-stmts: singleqbgate {
+exp: singleqbgate {
         printf("You entered a Single Qubit Gate - %s", $1);
     }
-    | twoqbgate {
-        printf("You entered a Two Qubit Gate - %s", $1);
-    }
+| twoqbgate {
+    printf("You entered a Two Qubit Gate - %s", $1);
+}
 ;
 
-singleqbgate: RZ arg qubit{
+singleqbgate: RZ arg qubitno {
         printf("You entered a RZ operation \n");
     }
     |
-    RX arg qubit{
+    RX arg qubitno {
         printf("You entered a RX operation \n");
     }
     |
-    HAD qubit{
+    HAD qubitno {
         printf("You entered a HAD operation \n");
     }
 ;
 
-twoqbgate: CZ qubit COMMA qubit{
+twoqbgate: CZ qubitno COMMA qubitno {
         printf("You entered a CZ operation \n");
     }
 ;
 
-qubit: QUBIT LEFTBRACK INT RIGHTBRACK
-;
+qubitno: QUBIT LEFTBRACK INT RIGHTBRACK {
+    printf("You entered qubit no \n", $3);
+};
 
 arg: LEFTPARENTH INT RIGHTPARENTH
-| LEFTPARENTH float RIGHTPARENTH
-;
+| LEFTPARENTH float RIGHTPARENTH ;
 
-float: INT DEC INT
+float: INT 
+| INT DEC INT
 | PI
-;
+| float arith float ;
+
+arith: ADD
+| SUB
+| MUL
+| DIV ;
 
 
 %%

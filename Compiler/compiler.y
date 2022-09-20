@@ -1,109 +1,86 @@
-/* Bison program */
-/* C code enclosed in %{}% is copied to the beginning of the generated parser */
 %{
-    #include <stdio.h>
-    int yylex();
-    int yyerror(char *s);
 
+#include <stdio.h>  // For I/O
+#include <stdlib.h> // For malloc here and symbol table
+#include <string.h> // For strcmp in symbol table
+
+#define YYDEBUG 1   // For Debugging
+int errors;         // Error Count
+
+extern int yylex();
+extern int yyparse();
+extern FILE* yyin;
+
+void yyerror(const char* s);
 %}
 
-/* declare tokens */
-/* This section provides information to Bison about the token types */
-/* Each terminal symbol that is not a single-character literal must be declared */
-%token INT
+
+%token INT FLOAT PI
 %token RZ RX HAD CZ
-%token QUBIT
-%token ADD SUB MUL DIV DEC PI
-%token LEFTBRACK RIGHTBRACK COMMA SEMICOLON LEFTPARENTH RIGHTPARENTH EOL
-
+%token ADD SUB MUL DIV LEFTBRACK RIGHTBRACK LEFTPARENTH RIGHTPARENTH
+%token QUBIT COMMA SEMICOLON EOL
 
 %%
 
-/* rules in simplified BNF (Backus-Naur Form) */
-/* BNF is a standard way to write context-free grammar (CFG) */
-/* CFG describes the rules the parser uses to turn a sequence of tokens into a parse tree */
-
-/* first two rules define the symbol prog */
-/* implement loop that reads an expression terminated by a new line and prints its value */
-
-prog: /* nothing */
-| prog exp EOL { printf("= %d\n", $1); }
+input: /* empty */
+	   | input line
 ;
 
-/* rest of the rules implement translation */
-/* syntactic glue to put the grammar together */
-
-exp: singleqbgate SEMICOLON{
-        printf("You entered a Single Qubit Gate");
-    }
-| twoqbgate SEMICOLON{
-    printf("You entered a Two Qubit Gate");
-}
+line: EOL
+    | gate EOL { printf("\tResult: %f\n", $1);}
 ;
 
-singleqbgate: RZ arg qubitno {
-        printf("You entered a RZ operation \n");
-    }
-    |
-    RX arg qubitno {
-        printf("You entered a RX operation \n");
-    }
-    |
-    HAD qubitno {
-        printf("You entered a HAD operation \n");
-    }
+gate: rx_gate                 		{ $$ = $1; }
+	  | rz_gate                 	{ $$ = $1; }
+	  | h_gate                 		{ $$ = $1; }
+	  | cz_gate                     { $$ = $1; }
 ;
 
-twoqbgate: CZ qubitno COMMA qubitno {
-        printf("You entered a CZ operation \n");
-    }
+rx_gate: RX arg qubit_ SEMICOLON { printf("rz GATE"); }
 ;
 
-qubitno: QUBIT LEFTBRACK INT RIGHTBRACK {
-    printf("You entered qubit no");
-};
-
-arg: LEFTPARENTH INT RIGHTPARENTH {
-        printf("You entered an INT in arg \n");
-        printf("%d", $2 );
-    }
-| LEFTPARENTH float RIGHTPARENTH {
-        printf("You entered a float in arg \n");
-    }
+rz_gate: RZ arg qubit_ SEMICOLON { printf("rz GATE"); }
 ;
 
-float: INT {
-        printf("You entered an INT \n");
-    }
-| INT DEC INT {
-        printf("You entered a float \n");
-    }
-| PI {
-        printf("You entered PI \n");
-    }
-| float arith float {
-        printf("You entered a calculation \n");
-    }
+h_gate: HAD qubit_ SEMICOLON { printf("HADAMARD GATE"); }
 ;
 
-arith: ADD
-| SUB
-| MUL
-| DIV ;
+cz_gate: CZ qubit_ COMMA qubit_	SEMICOLON { printf("CZ GATE"); }
+;
 
+qubit_: QUBIT LEFTBRACK INT RIGHTBRACK { printf("QUBIT"); }
+;
+
+arg: LEFTPARENTH exp_ RIGHTPARENTH { printf("ARG"); }
+;
+
+exp_: exp { $$ = $1; }
+| exp_ MUL exp_ { $$ = $1 * $3; }
+| exp_ DIV exp_ { $$ = $1 / $3; }
+| SUB exp_ { $$ = 0 - $1 ; }
+;
+
+exp: INT { $$ = $1; }
+| FLOAT { $$ = $1; }
+| PI { $$ = $1; }
+| exp ADD exp { $$ = $1 + $3; }
+| exp SUB exp { $$ = $1 - $3; }
+| SUB exp { $$ = 0 - $1 ; }
+;
 
 %%
 
-int yyerror(char *s)
-{
-    fprintf(stderr, "Syntax Error on line %s\n", s);
-    return 0;
+int main() {
+	yyin = stdin;
+
+	do {
+		yyparse();
+	} while(!feof(yyin));
+
+	return 0;
 }
 
-/* main() routine which calls yyparse() */
-/* yyparse() is the driver routine for the parser */
-int main()
-{
-    yyparse();
-    return 0;
+void yyerror(const char* s) {
+	fprintf(stderr, "Parse error: %s\n", s);
+	exit(1);
 }

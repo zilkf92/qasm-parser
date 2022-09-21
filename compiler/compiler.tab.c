@@ -75,10 +75,11 @@
 extern int yylex();
 extern int yyparse();
 extern FILE* yyin;
+extern FILE* yyout;
 
 void yyerror(const char* s);
 
-#line 82 "compiler.tab.c"
+#line 83 "compiler.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -152,12 +153,12 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 13 "compiler.y"
+#line 14 "compiler.y"
 
     int ival;
     float fval;
 
-#line 161 "compiler.tab.c"
+#line 162 "compiler.tab.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -534,10 +535,10 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    33,    33,    34,    37,    38,    41,    42,    43,    44,
-      47,    65,    83,    93,   102,   106,   110,   111,   112,   113,
-     114,   115,   116,   117,   118,   119,   120,   121,   122,   123,
-     126,   127,   128,   129,   130,   131
+       0,    34,    34,    35,    38,    39,    42,    43,    44,    45,
+      48,    66,    84,    94,   103,   106,   109,   110,   111,   112,
+     113,   114,   115,   116,   117,   118,   119,   120,   121,   122,
+     125,   126,   127,   128,   129,   130
 };
 #endif
 
@@ -1363,238 +1364,236 @@ yyreduce:
   switch (yyn)
     {
   case 5:
-#line 38 "compiler.y"
+#line 39 "compiler.y"
                { }
-#line 1369 "compiler.tab.c"
+#line 1370 "compiler.tab.c"
     break;
 
   case 6:
-#line 41 "compiler.y"
+#line 42 "compiler.y"
               { }
-#line 1375 "compiler.tab.c"
+#line 1376 "compiler.tab.c"
     break;
 
   case 7:
-#line 42 "compiler.y"
+#line 43 "compiler.y"
                     { }
-#line 1381 "compiler.tab.c"
+#line 1382 "compiler.tab.c"
     break;
 
   case 8:
-#line 43 "compiler.y"
+#line 44 "compiler.y"
                    { }
-#line 1387 "compiler.tab.c"
+#line 1388 "compiler.tab.c"
     break;
 
   case 9:
-#line 44 "compiler.y"
+#line 45 "compiler.y"
                     { }
-#line 1393 "compiler.tab.c"
+#line 1394 "compiler.tab.c"
     break;
 
   case 10:
-#line 47 "compiler.y"
+#line 48 "compiler.y"
                                  { 
-                printf("rz(0) q[");
-                printf("%i", (yyvsp[-1].ival));
-                printf("];\n");
-                printf("h q[");
-                printf("%i", (yyvsp[-1].ival));
-                printf("];\n");
-                printf("rz(");
-                printf("%f", (yyvsp[-2].fval));
-                printf(") q[");
-                printf("%i", (yyvsp[-1].ival));
-                printf("];\n");
-                printf("h q[");
-                printf("%i", (yyvsp[-1].ival));
-                printf("];\n");
+                fprintf(yyout, "rz(0) q[");
+                fprintf(yyout, "%i", (yyvsp[-1].ival));
+                fprintf(yyout, "];\n");
+                fprintf(yyout, "h q[");
+                fprintf(yyout, "%i", (yyvsp[-1].ival));
+                fprintf(yyout, "];\n");
+                fprintf(yyout, "rz(");
+                fprintf(yyout, "%f", (yyvsp[-2].fval));
+                fprintf(yyout, ") q[");
+                fprintf(yyout, "%i", (yyvsp[-1].ival));
+                fprintf(yyout, "];\n");
+                fprintf(yyout, "h q[");
+                fprintf(yyout, "%i", (yyvsp[-1].ival));
+                fprintf(yyout, "];\n");
                 }
-#line 1414 "compiler.tab.c"
+#line 1415 "compiler.tab.c"
     break;
 
   case 11:
-#line 65 "compiler.y"
+#line 66 "compiler.y"
                                  { 
-                printf("rz(");
-                printf("%f", (yyvsp[-2].fval));
-                printf(") q[");
-                printf("%i", (yyvsp[-1].ival));
-                printf("];\n");
-                printf("h q[");
-                printf("%i", (yyvsp[-1].ival));
-                printf("];\n");
-                printf("rz(0) q[");
-                printf("%i", (yyvsp[-1].ival));
-                printf("];\n");
-                printf("h q[");
-                printf("%i", (yyvsp[-1].ival));
-                printf("];\n");
+                fprintf(yyout, "rz(");
+                fprintf(yyout, "%f", (yyvsp[-2].fval));
+                fprintf(yyout, ") q[");
+                fprintf(yyout, "%i", (yyvsp[-1].ival));
+                fprintf(yyout, "];\n");
+                fprintf(yyout, "h q[");
+                fprintf(yyout, "%i", (yyvsp[-1].ival));
+                fprintf(yyout, "];\n");
+                fprintf(yyout, "rz(0) q[");
+                fprintf(yyout, "%i", (yyvsp[-1].ival));
+                fprintf(yyout, "];\n");
+                fprintf(yyout, "h q[");
+                fprintf(yyout, "%i", (yyvsp[-1].ival));
+                fprintf(yyout, "];\n");
                 }
-#line 1435 "compiler.tab.c"
+#line 1436 "compiler.tab.c"
     break;
 
   case 12:
-#line 83 "compiler.y"
+#line 84 "compiler.y"
                              { 
-                printf("rz(0) q[");
-                printf("%i", (yyvsp[-1].ival));
-                printf("];\n");
-                printf("h q[");
-                printf("%i", (yyvsp[-1].ival));
-                printf("];\n");
+                fprintf(yyout, "rz(0) q[");
+                fprintf(yyout, "%i", (yyvsp[-1].ival));
+                fprintf(yyout, "];\n");
+                fprintf(yyout, "h q[");
+                fprintf(yyout, "%i", (yyvsp[-1].ival));
+                fprintf(yyout, "];\n");
                 }
-#line 1448 "compiler.tab.c"
+#line 1449 "compiler.tab.c"
     break;
 
   case 13:
-#line 93 "compiler.y"
+#line 94 "compiler.y"
                                           {
-                printf("cz q[");
-                printf("%i", (yyvsp[-3].ival));
-                printf("], q[");
-                printf("%i", (yyvsp[-1].ival));
-                printf("];\n");
+                fprintf(yyout, "cz q[");
+                fprintf(yyout, "%i", (yyvsp[-3].ival));
+                fprintf(yyout, "], q[");
+                fprintf(yyout, "%i", (yyvsp[-1].ival));
+                fprintf(yyout, "];\n");
                 }
-#line 1460 "compiler.tab.c"
+#line 1461 "compiler.tab.c"
     break;
 
   case 14:
-#line 102 "compiler.y"
-                                       { printf("QUBIT\n"); 
-                                         (yyval.ival) = (yyvsp[-1].ival); }
+#line 103 "compiler.y"
+                                       { (yyval.ival) = (yyvsp[-1].ival); }
 #line 1467 "compiler.tab.c"
     break;
 
   case 15:
 #line 106 "compiler.y"
-                                   { printf("ARG\n");
-                                     (yyval.fval) = (yyvsp[-1].fval); }
-#line 1474 "compiler.tab.c"
+                                   { (yyval.fval) = (yyvsp[-1].fval); }
+#line 1473 "compiler.tab.c"
     break;
 
   case 16:
-#line 110 "compiler.y"
+#line 109 "compiler.y"
             { (yyval.fval) = (yyvsp[0].fval); }
-#line 1480 "compiler.tab.c"
+#line 1479 "compiler.tab.c"
     break;
 
   case 17:
-#line 111 "compiler.y"
+#line 110 "compiler.y"
                 { (yyval.fval) = (yyvsp[-2].fval) + (yyvsp[0].fval); }
-#line 1486 "compiler.tab.c"
+#line 1485 "compiler.tab.c"
     break;
 
   case 18:
-#line 112 "compiler.y"
+#line 111 "compiler.y"
                 { (yyval.fval) = (yyvsp[-2].fval) - (yyvsp[0].fval); }
-#line 1492 "compiler.tab.c"
+#line 1491 "compiler.tab.c"
     break;
 
   case 19:
-#line 113 "compiler.y"
+#line 112 "compiler.y"
                 { (yyval.fval) = (yyvsp[-2].fval) * (yyvsp[0].fval); }
-#line 1498 "compiler.tab.c"
+#line 1497 "compiler.tab.c"
     break;
 
   case 20:
-#line 114 "compiler.y"
+#line 113 "compiler.y"
                 { (yyval.fval) = (yyvsp[-2].fval) / (yyvsp[0].fval); }
-#line 1504 "compiler.tab.c"
+#line 1503 "compiler.tab.c"
     break;
 
   case 21:
-#line 115 "compiler.y"
+#line 114 "compiler.y"
            { (yyval.fval) = 0 - (yyvsp[0].fval) ; }
-#line 1510 "compiler.tab.c"
+#line 1509 "compiler.tab.c"
     break;
 
   case 22:
-#line 116 "compiler.y"
+#line 115 "compiler.y"
                { (yyval.fval) = (yyvsp[-2].ival) + (yyvsp[0].fval); }
-#line 1516 "compiler.tab.c"
+#line 1515 "compiler.tab.c"
     break;
 
   case 23:
-#line 117 "compiler.y"
+#line 116 "compiler.y"
                { (yyval.fval) = (yyvsp[-2].ival) - (yyvsp[0].fval); }
-#line 1522 "compiler.tab.c"
+#line 1521 "compiler.tab.c"
     break;
 
   case 24:
-#line 118 "compiler.y"
+#line 117 "compiler.y"
                { (yyval.fval) = (yyvsp[-2].ival) * (yyvsp[0].fval); }
-#line 1528 "compiler.tab.c"
+#line 1527 "compiler.tab.c"
     break;
 
   case 25:
-#line 119 "compiler.y"
+#line 118 "compiler.y"
                { (yyval.fval) = (yyvsp[-2].ival) / (yyvsp[0].fval); }
-#line 1534 "compiler.tab.c"
+#line 1533 "compiler.tab.c"
     break;
 
   case 26:
-#line 120 "compiler.y"
+#line 119 "compiler.y"
                { (yyval.fval) = (yyvsp[-2].fval) + (yyvsp[0].ival); }
-#line 1540 "compiler.tab.c"
+#line 1539 "compiler.tab.c"
     break;
 
   case 27:
-#line 121 "compiler.y"
+#line 120 "compiler.y"
                { (yyval.fval) = (yyvsp[-2].fval) - (yyvsp[0].ival); }
-#line 1546 "compiler.tab.c"
+#line 1545 "compiler.tab.c"
     break;
 
   case 28:
-#line 122 "compiler.y"
+#line 121 "compiler.y"
                { (yyval.fval) = (yyvsp[-2].fval) * (yyvsp[0].ival); }
-#line 1552 "compiler.tab.c"
+#line 1551 "compiler.tab.c"
     break;
 
   case 29:
-#line 123 "compiler.y"
+#line 122 "compiler.y"
                { (yyval.fval) = (yyvsp[-2].fval) / (yyvsp[0].ival); }
-#line 1558 "compiler.tab.c"
+#line 1557 "compiler.tab.c"
     break;
 
   case 30:
-#line 126 "compiler.y"
+#line 125 "compiler.y"
          { (yyval.ival) = (yyvsp[0].ival); }
-#line 1564 "compiler.tab.c"
+#line 1563 "compiler.tab.c"
     break;
 
   case 31:
-#line 127 "compiler.y"
+#line 126 "compiler.y"
               { (yyval.ival) = (yyvsp[-2].ival) + (yyvsp[0].ival); }
-#line 1570 "compiler.tab.c"
+#line 1569 "compiler.tab.c"
     break;
 
   case 32:
-#line 128 "compiler.y"
+#line 127 "compiler.y"
               { (yyval.ival) = (yyvsp[-2].ival) - (yyvsp[0].ival); }
-#line 1576 "compiler.tab.c"
+#line 1575 "compiler.tab.c"
     break;
 
   case 33:
-#line 129 "compiler.y"
+#line 128 "compiler.y"
               { (yyval.ival) = (yyvsp[-2].ival) * (yyvsp[0].ival); }
-#line 1582 "compiler.tab.c"
+#line 1581 "compiler.tab.c"
     break;
 
   case 34:
-#line 130 "compiler.y"
+#line 129 "compiler.y"
               { (yyval.ival) = (yyvsp[-2].ival) / (yyvsp[0].ival); }
-#line 1588 "compiler.tab.c"
+#line 1587 "compiler.tab.c"
     break;
 
   case 35:
-#line 131 "compiler.y"
+#line 130 "compiler.y"
           { (yyval.ival) = 0 - (yyvsp[0].ival) ; }
-#line 1594 "compiler.tab.c"
+#line 1593 "compiler.tab.c"
     break;
 
 
-#line 1598 "compiler.tab.c"
+#line 1597 "compiler.tab.c"
 
       default: break;
     }
@@ -1826,16 +1825,17 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 134 "compiler.y"
+#line 133 "compiler.y"
 
 
 int main() {
-	yyin = stdin;
 
+	yyin = fopen("./test.qasm", "r");
+    yyout = fopen("./output.qasm", "a");
 	do {
 		yyparse();
 	} while(!feof(yyin));
-
+    fclose(yyout);
 	return 0;
 }
 

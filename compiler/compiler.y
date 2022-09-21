@@ -105,6 +105,7 @@ qubit_: QUBIT LEFTBRACK INT RIGHTBRACK { $$ = $3; }
 ;
 
 arg: LEFTPARENTH expf RIGHTPARENTH { $$ = $2; }
+| LEFTPARENTH exp RIGHTPARENTH { $$ = $2; }
 ;
 
 expf: FLOAT { $$ = $1; }
@@ -122,13 +123,13 @@ expf: FLOAT { $$ = $1; }
 | expf SUB exp { $$ = $1 - $3; }
 | expf MUL exp { $$ = $1 * $3; }
 | expf DIV exp { $$ = $1 / $3; }
+| exp DIV exp { $$ = (float)$1 / (float)$3; }
 ;
 
 exp: INT { $$ = $1; }
 | exp ADD exp { $$ = $1 + $3; }
 | exp SUB exp { $$ = $1 - $3; }
 | exp MUL exp { $$ = $1 * $3; }
-| exp DIV exp { $$ = $1 / $3; }
 | SUB exp { $$ = 0 - $2 ; }
 ;
 
@@ -136,9 +137,8 @@ exp: INT { $$ = $1; }
 %%
 
 int main() {
-    printf("%f", M_PI);
-	yyin = fopen("./test.qasm", "r");
-    yyout = fopen("./output.qasm", "a");
+	yyin = fopen("./input.qasm", "r");
+    yyout = fopen("./output.qasm", "w+");
 	do {
 		yyparse();
 	} while(!feof(yyin));

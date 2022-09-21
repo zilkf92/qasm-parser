@@ -2,6 +2,7 @@
 
 #include <stdio.h>  // For I/O
 #include <stdlib.h> // For malloc here and symbol table
+#include <math.h>
 
 extern int yylex();
 extern int yyparse();
@@ -107,6 +108,7 @@ arg: LEFTPARENTH expf RIGHTPARENTH { $$ = $2; }
 ;
 
 expf: FLOAT { $$ = $1; }
+| PI { $$ = M_PI; }
 | expf ADD expf { $$ = $1 + $3; }
 | expf SUB expf { $$ = $1 - $3; }
 | expf MUL expf { $$ = $1 * $3; }
@@ -130,10 +132,11 @@ exp: INT { $$ = $1; }
 | SUB exp { $$ = 0 - $2 ; }
 ;
 
+
 %%
 
 int main() {
-
+    printf("%f", M_PI);
 	yyin = fopen("./test.qasm", "r");
     yyout = fopen("./output.qasm", "a");
 	do {

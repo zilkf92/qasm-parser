@@ -78,10 +78,11 @@ union YYSTYPE
 {
 #line 15 "compiler.y"
 
-    int ival;
-    float fval;
+    const char* ival;
+    const char* fval;
+    const char* pi;
 
-#line 85 "compiler.tab.h"
+#line 86 "compiler.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

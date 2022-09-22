@@ -12,23 +12,20 @@
 
 integer [1-9]+[0-9]*|0
 float   [0-9]+\.[0-9]+
+pi      [-+]?pi|[-+]?[0-9].[0-9]+[*]pi
 
 /* Regular Expressions defining the Tokens for PhotonQ Compiler */
 /* pattern + action */
 %%
 
-{integer}	{yylval.ival = atoi(yytext); return INT;}
-{float} 	{yylval.fval = atof(yytext); return FLOAT;}
-"pi"    { return PI; }
+{integer}	{yylval.ival = yytext; return INT;}
+{float} 	{yylval.fval = yytext; return FLOAT;}
+{pi}    { yylval.pi = yytext; return PI; }
 "rz"    { return RZ; }
 "rx"    { return RX; }
 "h"     { return HAD; }
 "cz"    { return CZ; }
 "cx"    { return CX; }
-"+"     { return ADD; }
-"-"     { return SUB; }
-"*"     { return MUL; }
-"/"     { return DIV; }
 "["     { return LEFTBRACK; }
 "]"     { return RIGHTBRACK; }
 "("     { return LEFTPARENTH; }

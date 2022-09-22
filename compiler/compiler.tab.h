@@ -56,18 +56,19 @@ extern int yydebug;
     RX = 262,
     HAD = 263,
     CZ = 264,
-    ADD = 265,
-    SUB = 266,
-    MUL = 267,
-    DIV = 268,
-    LEFTBRACK = 269,
-    RIGHTBRACK = 270,
-    LEFTPARENTH = 271,
-    RIGHTPARENTH = 272,
-    QUBIT = 273,
-    COMMA = 274,
-    SEMICOLON = 275,
-    EOL = 276
+    CX = 265,
+    ADD = 266,
+    SUB = 267,
+    MUL = 268,
+    DIV = 269,
+    LEFTBRACK = 270,
+    RIGHTBRACK = 271,
+    LEFTPARENTH = 272,
+    RIGHTPARENTH = 273,
+    QUBIT = 274,
+    COMMA = 275,
+    SEMICOLON = 276,
+    EOL = 277
   };
 #endif
 
@@ -80,7 +81,7 @@ union YYSTYPE
     int ival;
     float fval;
 
-#line 84 "compiler.tab.h"
+#line 85 "compiler.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

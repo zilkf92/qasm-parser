@@ -24,6 +24,7 @@ float   [0-9]+\.[0-9]+
 "rx"    { return RX; }
 "h"     { return HAD; }
 "cz"    { return CZ; }
+"cx"    { return CX; }
 "+"     { return ADD; }
 "-"     { return SUB; }
 "*"     { return MUL; }

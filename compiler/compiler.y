@@ -20,7 +20,7 @@ void yyerror(const char* s);
 %token<ival> INT
 %token<fval> FLOAT 
 %token PI
-%token RZ RX HAD CZ
+%token RZ RX HAD CZ CX
 %token ADD SUB MUL DIV LEFTBRACK RIGHTBRACK LEFTPARENTH RIGHTPARENTH
 %token QUBIT COMMA SEMICOLON EOL
 
@@ -44,6 +44,7 @@ gate: rx_gate { }
 	  | rz_gate { }
 	  | h_gate { }
 	  | cz_gate { }
+      | cx_gate { }
 ;
 
 rx_gate: RX arg qubit_ SEMICOLON { 
@@ -96,6 +97,27 @@ cz_gate: CZ qubit_ COMMA qubit_	SEMICOLON {
                 fprintf(yyout, "cz q[");
                 fprintf(yyout, "%i", $2);
                 fprintf(yyout, "], q[");
+                fprintf(yyout, "%i", $4);
+                fprintf(yyout, "];\n");
+                }
+;
+
+cx_gate: CX qubit_ COMMA qubit_	SEMICOLON {
+                fprintf(yyout, "rz(0) q[");
+                fprintf(yyout, "%i", $4);
+                fprintf(yyout, "];\n");
+                fprintf(yyout, "h q[");
+                fprintf(yyout, "%i", $4);
+                fprintf(yyout, "];\n");
+                fprintf(yyout, "cz q[");
+                fprintf(yyout, "%i", $2);
+                fprintf(yyout, "], q[");
+                fprintf(yyout, "%i", $4);
+                fprintf(yyout, "];\n");
+                fprintf(yyout, "rz(0) q[");
+                fprintf(yyout, "%i", $4);
+                fprintf(yyout, "];\n");
+                fprintf(yyout, "h q[");
                 fprintf(yyout, "%i", $4);
                 fprintf(yyout, "];\n");
                 }

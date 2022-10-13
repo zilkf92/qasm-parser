@@ -461,8 +461,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "compiler.l"
-#line 2 "compiler.l"
+#line 1 "parser.l"
+#line 2 "parser.l"
 #include <stdio.h>
 #include <math.h> // needed for call to atof() below
 
@@ -691,7 +691,7 @@ YY_DECL
 		}
 
 	{
-#line 18 "compiler.l"
+#line 18 "parser.l"
 
 
 #line 698 "lex.yy.c"
@@ -753,118 +753,118 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 20 "compiler.l"
+#line 20 "parser.l"
 {yylval.ival = atoi(yytext); return INT;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 21 "compiler.l"
+#line 21 "parser.l"
 {yylval.fval = atof(yytext); return FLOAT;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 22 "compiler.l"
+#line 22 "parser.l"
 { return PI; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 23 "compiler.l"
+#line 23 "parser.l"
 { return RZ; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 24 "compiler.l"
+#line 24 "parser.l"
 { return RX; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 25 "compiler.l"
+#line 25 "parser.l"
 { return HAD; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 26 "compiler.l"
+#line 26 "parser.l"
 { return CZ; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 27 "compiler.l"
+#line 27 "parser.l"
 { return CX; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 28 "compiler.l"
+#line 28 "parser.l"
 { return ADD; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 29 "compiler.l"
+#line 29 "parser.l"
 { return SUB; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 30 "compiler.l"
+#line 30 "parser.l"
 { return MUL; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 31 "compiler.l"
+#line 31 "parser.l"
 { return DIV; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 32 "compiler.l"
+#line 32 "parser.l"
 { return LEFTBRACK; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 33 "compiler.l"
+#line 33 "parser.l"
 { return RIGHTBRACK; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 34 "compiler.l"
+#line 34 "parser.l"
 { return LEFTPARENTH; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 35 "compiler.l"
+#line 35 "parser.l"
 { return RIGHTPARENTH; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 36 "compiler.l"
+#line 36 "parser.l"
 { return QUBIT; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 37 "compiler.l"
+#line 37 "parser.l"
 { return COMMA; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 38 "compiler.l"
+#line 38 "parser.l"
 { return SEMICOLON; }
 	YY_BREAK
 case 20:
 /* rule 20 can match eol */
 YY_RULE_SETUP
-#line 39 "compiler.l"
+#line 39 "parser.l"
 { return EOL; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 40 "compiler.l"
+#line 40 "parser.l"
 { /* ignore whitespace */ }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 41 "compiler.l"
+#line 41 "parser.l"
 { printf("Unknown character \n"); }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 43 "compiler.l"
+#line 43 "parser.l"
 ECHO;
 	YY_BREAK
 #line 871 "lex.yy.c"
@@ -1872,6 +1872,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 43 "compiler.l"
+#line 43 "parser.l"
 
 

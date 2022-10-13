@@ -66,7 +66,7 @@
 
 
 /* First part of user prologue.  */
-#line 1 "compiler.y"
+#line 1 "parser.y"
 
 
 #include <stdio.h>  // For I/O
@@ -80,7 +80,7 @@ extern FILE* yyout;
 
 void yyerror(const char* s);
 
-#line 84 "compiler.tab.c"
+#line 84 "parser.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -113,8 +113,8 @@ void yyerror(const char* s);
 
 /* Use api.header.include to #include this header
    instead of duplicating it here.  */
-#ifndef YY_YY_COMPILER_TAB_H_INCLUDED
-# define YY_YY_COMPILER_TAB_H_INCLUDED
+#ifndef YY_YY_PARSER_TAB_H_INCLUDED
+# define YY_YY_PARSER_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -155,12 +155,12 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 15 "compiler.y"
+#line 15 "parser.y"
 
     int ival;
     float fval;
 
-#line 164 "compiler.tab.c"
+#line 164 "parser.tab.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -173,7 +173,7 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_COMPILER_TAB_H_INCLUDED  */
+#endif /* !YY_YY_PARSER_TAB_H_INCLUDED  */
 
 
 
@@ -1371,43 +1371,43 @@ yyreduce:
   switch (yyn)
     {
   case 5:
-#line 40 "compiler.y"
+#line 40 "parser.y"
                { }
-#line 1377 "compiler.tab.c"
+#line 1377 "parser.tab.c"
     break;
 
   case 6:
-#line 43 "compiler.y"
+#line 43 "parser.y"
               { }
-#line 1383 "compiler.tab.c"
+#line 1383 "parser.tab.c"
     break;
 
   case 7:
-#line 44 "compiler.y"
+#line 44 "parser.y"
                     { }
-#line 1389 "compiler.tab.c"
+#line 1389 "parser.tab.c"
     break;
 
   case 8:
-#line 45 "compiler.y"
+#line 45 "parser.y"
                    { }
-#line 1395 "compiler.tab.c"
+#line 1395 "parser.tab.c"
     break;
 
   case 9:
-#line 46 "compiler.y"
+#line 46 "parser.y"
                     { }
-#line 1401 "compiler.tab.c"
+#line 1401 "parser.tab.c"
     break;
 
   case 10:
-#line 47 "compiler.y"
+#line 47 "parser.y"
                 { }
-#line 1407 "compiler.tab.c"
+#line 1407 "parser.tab.c"
     break;
 
   case 11:
-#line 50 "compiler.y"
+#line 50 "parser.y"
                                  { 
                 fprintf(yyout, "rz(0) q[");
                 fprintf(yyout, "%i", (yyvsp[-1].ival));
@@ -1424,11 +1424,11 @@ yyreduce:
                 fprintf(yyout, "%i", (yyvsp[-1].ival));
                 fprintf(yyout, "];\n");
                 }
-#line 1428 "compiler.tab.c"
+#line 1428 "parser.tab.c"
     break;
 
   case 12:
-#line 68 "compiler.y"
+#line 68 "parser.y"
                                  { 
                 fprintf(yyout, "rz(");
                 fprintf(yyout, "%f", (yyvsp[-2].fval));
@@ -1445,11 +1445,11 @@ yyreduce:
                 fprintf(yyout, "%i", (yyvsp[-1].ival));
                 fprintf(yyout, "];\n");
                 }
-#line 1449 "compiler.tab.c"
+#line 1449 "parser.tab.c"
     break;
 
   case 13:
-#line 86 "compiler.y"
+#line 86 "parser.y"
                              { 
                 fprintf(yyout, "rz(0) q[");
                 fprintf(yyout, "%i", (yyvsp[-1].ival));
@@ -1458,11 +1458,11 @@ yyreduce:
                 fprintf(yyout, "%i", (yyvsp[-1].ival));
                 fprintf(yyout, "];\n");
                 }
-#line 1462 "compiler.tab.c"
+#line 1462 "parser.tab.c"
     break;
 
   case 14:
-#line 96 "compiler.y"
+#line 96 "parser.y"
                                           {
                 fprintf(yyout, "cz q[");
                 fprintf(yyout, "%i", (yyvsp[-3].ival));
@@ -1470,11 +1470,11 @@ yyreduce:
                 fprintf(yyout, "%i", (yyvsp[-1].ival));
                 fprintf(yyout, "];\n");
                 }
-#line 1474 "compiler.tab.c"
+#line 1474 "parser.tab.c"
     break;
 
   case 15:
-#line 105 "compiler.y"
+#line 105 "parser.y"
                                           {
                 fprintf(yyout, "rz(0) q[");
                 fprintf(yyout, "%i", (yyvsp[-1].ival));
@@ -1494,155 +1494,155 @@ yyreduce:
                 fprintf(yyout, "%i", (yyvsp[-1].ival));
                 fprintf(yyout, "];\n");
                 }
-#line 1498 "compiler.tab.c"
+#line 1498 "parser.tab.c"
     break;
 
   case 16:
-#line 126 "compiler.y"
+#line 126 "parser.y"
                                        { (yyval.ival) = (yyvsp[-1].ival); }
-#line 1504 "compiler.tab.c"
+#line 1504 "parser.tab.c"
     break;
 
   case 17:
-#line 129 "compiler.y"
+#line 129 "parser.y"
                                    { (yyval.fval) = (yyvsp[-1].fval); }
-#line 1510 "compiler.tab.c"
+#line 1510 "parser.tab.c"
     break;
 
   case 18:
-#line 130 "compiler.y"
+#line 130 "parser.y"
                                { (yyval.fval) = (yyvsp[-1].ival); }
-#line 1516 "compiler.tab.c"
+#line 1516 "parser.tab.c"
     break;
 
   case 19:
-#line 133 "compiler.y"
+#line 133 "parser.y"
             { (yyval.fval) = (yyvsp[0].fval); }
-#line 1522 "compiler.tab.c"
+#line 1522 "parser.tab.c"
     break;
 
   case 20:
-#line 134 "compiler.y"
+#line 134 "parser.y"
      { (yyval.fval) = M_PI; }
-#line 1528 "compiler.tab.c"
+#line 1528 "parser.tab.c"
     break;
 
   case 21:
-#line 135 "compiler.y"
+#line 135 "parser.y"
                 { (yyval.fval) = (yyvsp[-2].fval) + (yyvsp[0].fval); }
-#line 1534 "compiler.tab.c"
+#line 1534 "parser.tab.c"
     break;
 
   case 22:
-#line 136 "compiler.y"
+#line 136 "parser.y"
                 { (yyval.fval) = (yyvsp[-2].fval) - (yyvsp[0].fval); }
-#line 1540 "compiler.tab.c"
+#line 1540 "parser.tab.c"
     break;
 
   case 23:
-#line 137 "compiler.y"
+#line 137 "parser.y"
                 { (yyval.fval) = (yyvsp[-2].fval) * (yyvsp[0].fval); }
-#line 1546 "compiler.tab.c"
+#line 1546 "parser.tab.c"
     break;
 
   case 24:
-#line 138 "compiler.y"
+#line 138 "parser.y"
                 { (yyval.fval) = (yyvsp[-2].fval) / (yyvsp[0].fval); }
-#line 1552 "compiler.tab.c"
+#line 1552 "parser.tab.c"
     break;
 
   case 25:
-#line 139 "compiler.y"
+#line 139 "parser.y"
            { (yyval.fval) = 0 - (yyvsp[0].fval) ; }
-#line 1558 "compiler.tab.c"
+#line 1558 "parser.tab.c"
     break;
 
   case 26:
-#line 140 "compiler.y"
+#line 140 "parser.y"
                { (yyval.fval) = (yyvsp[-2].ival) + (yyvsp[0].fval); }
-#line 1564 "compiler.tab.c"
+#line 1564 "parser.tab.c"
     break;
 
   case 27:
-#line 141 "compiler.y"
+#line 141 "parser.y"
                { (yyval.fval) = (yyvsp[-2].ival) - (yyvsp[0].fval); }
-#line 1570 "compiler.tab.c"
+#line 1570 "parser.tab.c"
     break;
 
   case 28:
-#line 142 "compiler.y"
+#line 142 "parser.y"
                { (yyval.fval) = (yyvsp[-2].ival) * (yyvsp[0].fval); }
-#line 1576 "compiler.tab.c"
+#line 1576 "parser.tab.c"
     break;
 
   case 29:
-#line 143 "compiler.y"
+#line 143 "parser.y"
                { (yyval.fval) = (yyvsp[-2].ival) / (yyvsp[0].fval); }
-#line 1582 "compiler.tab.c"
+#line 1582 "parser.tab.c"
     break;
 
   case 30:
-#line 144 "compiler.y"
+#line 144 "parser.y"
                { (yyval.fval) = (yyvsp[-2].fval) + (yyvsp[0].ival); }
-#line 1588 "compiler.tab.c"
+#line 1588 "parser.tab.c"
     break;
 
   case 31:
-#line 145 "compiler.y"
+#line 145 "parser.y"
                { (yyval.fval) = (yyvsp[-2].fval) - (yyvsp[0].ival); }
-#line 1594 "compiler.tab.c"
+#line 1594 "parser.tab.c"
     break;
 
   case 32:
-#line 146 "compiler.y"
+#line 146 "parser.y"
                { (yyval.fval) = (yyvsp[-2].fval) * (yyvsp[0].ival); }
-#line 1600 "compiler.tab.c"
+#line 1600 "parser.tab.c"
     break;
 
   case 33:
-#line 147 "compiler.y"
+#line 147 "parser.y"
                { (yyval.fval) = (yyvsp[-2].fval) / (yyvsp[0].ival); }
-#line 1606 "compiler.tab.c"
+#line 1606 "parser.tab.c"
     break;
 
   case 34:
-#line 148 "compiler.y"
+#line 148 "parser.y"
               { (yyval.fval) = (float)(yyvsp[-2].ival) / (float)(yyvsp[0].ival); }
-#line 1612 "compiler.tab.c"
+#line 1612 "parser.tab.c"
     break;
 
   case 35:
-#line 151 "compiler.y"
+#line 151 "parser.y"
          { (yyval.ival) = (yyvsp[0].ival); }
-#line 1618 "compiler.tab.c"
+#line 1618 "parser.tab.c"
     break;
 
   case 36:
-#line 152 "compiler.y"
+#line 152 "parser.y"
               { (yyval.ival) = (yyvsp[-2].ival) + (yyvsp[0].ival); }
-#line 1624 "compiler.tab.c"
+#line 1624 "parser.tab.c"
     break;
 
   case 37:
-#line 153 "compiler.y"
+#line 153 "parser.y"
               { (yyval.ival) = (yyvsp[-2].ival) - (yyvsp[0].ival); }
-#line 1630 "compiler.tab.c"
+#line 1630 "parser.tab.c"
     break;
 
   case 38:
-#line 154 "compiler.y"
+#line 154 "parser.y"
               { (yyval.ival) = (yyvsp[-2].ival) * (yyvsp[0].ival); }
-#line 1636 "compiler.tab.c"
+#line 1636 "parser.tab.c"
     break;
 
   case 39:
-#line 155 "compiler.y"
+#line 155 "parser.y"
           { (yyval.ival) = 0 - (yyvsp[0].ival) ; }
-#line 1642 "compiler.tab.c"
+#line 1642 "parser.tab.c"
     break;
 
 
-#line 1646 "compiler.tab.c"
+#line 1646 "parser.tab.c"
 
       default: break;
     }
@@ -1874,7 +1874,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 159 "compiler.y"
+#line 159 "parser.y"
 
 
 int main() {

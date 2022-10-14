@@ -24,7 +24,7 @@ git clone https://github.com/zilkf92/qasm-parser.git
 The repository contains 2 branches:
 
 ### **main** branch
-here, the string "pi" is interpreted as a mathematical constant from the `<math.h>` header and all other numbers are interpreted as integers or floats. E.g.:
+Here, the string "pi" is interpreted as a mathematical constant from the `<math.h>` header and all other numbers are interpreted as integers or floats. E.g.:
 ```
 rz(pi/4) q[8];
 cx q[8],q[7];
@@ -48,7 +48,7 @@ h q[7];
 ```
 
 ### **string-parsing** branch
-here, each argument of a *QASM* gate (parameter and qubit assignment) is interpreted and parsed as a string. E.g.:
+Here, each argument of a *QASM* gate (parameter and qubit assignment) is interpreted and parsed as a string. E.g.:
 ```
 rz(pi/4) q[8];
 cx q[8],q[7];

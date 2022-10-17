@@ -3,8 +3,8 @@
 
 #define YY_DECL int yylex()
 
-/* compiler.tab.h includes definitions of tokens and yylval */
-#include "compiler.tab.h"
+/* parser.tab.h includes definitions of tokens and yylval */
+#include "parser.tab.h"
 %}
 
 /* Token Definitions */

@@ -144,8 +144,8 @@ arg: LEFTPARENTH INT RIGHTPARENTH { $$ = $2; }
 %%
 
 int main() {
-	yyin = fopen("./input.qasm", "r");
-    yyout = fopen("./output.qasm", "w+");
+	yyin = fopen("./input examples/qft.qasm", "r");
+    yyout = fopen("./outputs/qft.qasm", "w+");
 	do {
 		yyparse(); /* Yacc/Bison parser */
 	} while(!feof(yyin));

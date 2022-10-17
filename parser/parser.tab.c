@@ -68,9 +68,8 @@
 /* First part of user prologue.  */
 #line 1 "parser.y"
 
-
-#include <stdio.h>  // For I/O
-#include <stdlib.h> // For malloc here and symbol table
+#include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 extern int yylex();
@@ -80,7 +79,7 @@ extern FILE* yyout;
 
 void yyerror(const char* s);
 
-#line 84 "parser.tab.c"
+#line 83 "parser.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -155,10 +154,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 15 "parser.y"
+#line 16 "parser.y"
 
-    int ival;
-    float fval;
+    const char* ival;
+    const char* fval;
+    const char* pi;
 
 #line 164 "parser.tab.c"
 
@@ -479,16 +479,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   67
+#define YYLAST   32
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  23
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  13
+#define YYNNTS  11
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  39
+#define YYNRULES  19
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  72
+#define YYNSTATES  44
 
 #define YYUNDEFTOK  2
 #define YYMAXUTOK   277
@@ -537,10 +537,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    35,    35,    36,    39,    40,    43,    44,    45,    46,
-      47,    50,    68,    86,    96,   105,   126,   129,   130,   133,
-     134,   135,   136,   137,   138,   139,   140,   141,   142,   143,
-     144,   145,   146,   147,   148,   151,   152,   153,   154,   155
+       0,    52,    52,    53,    56,    57,    60,    61,    62,    63,
+      64,    67,    83,    99,   109,   116,   135,   138,   139,   140
 };
 #endif
 
@@ -553,7 +551,7 @@ static const char *const yytname[] =
   "CZ", "CX", "ADD", "SUB", "MUL", "DIV", "LEFTBRACK", "RIGHTBRACK",
   "LEFTPARENTH", "RIGHTPARENTH", "QUBIT", "COMMA", "SEMICOLON", "EOL",
   "$accept", "input", "line", "gate", "rx_gate", "rz_gate", "h_gate",
-  "cz_gate", "cx_gate", "qubit_", "arg", "expf", "exp", YY_NULLPTR
+  "cz_gate", "cx_gate", "qubit_", "arg", YY_NULLPTR
 };
 #endif
 
@@ -568,7 +566,7 @@ static const yytype_int16 yytoknum[] =
 };
 # endif
 
-#define YYPACT_NINF (-12)
+#define YYPACT_NINF (-15)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -582,14 +580,11 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -12,     8,   -12,   -10,   -10,     0,     0,     0,   -12,   -12,
-      -1,   -12,   -12,   -12,   -12,   -12,     1,     0,     0,     7,
-       2,     4,     5,   -12,   -12,   -12,   -12,     1,    30,    49,
-       6,    14,    23,   -12,     0,     0,   -11,    -4,     1,     1,
-       1,     1,   -12,     1,     1,     1,     1,   -12,   -12,   -12,
-      29,    25,    26,   -11,    -4,   -11,    -4,   -12,   -12,   -12,
-     -12,   -11,    -4,   -11,    -4,   -12,   -12,   -12,   -12,   -12,
-     -12,   -12
+     -15,     7,   -15,   -12,   -12,   -13,   -13,   -13,   -15,   -15,
+     -14,   -15,   -15,   -15,   -15,   -15,    -1,   -13,   -13,    -5,
+      -3,   -11,     0,   -15,     1,     3,     4,     2,     6,    21,
+     -15,   -13,   -13,   -15,   -15,   -15,   -15,   -15,    12,     9,
+      10,   -15,   -15,   -15
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -599,26 +594,23 @@ static const yytype_int8 yydefact[] =
 {
        2,     0,     1,     0,     0,     0,     0,     0,     4,     3,
        0,     6,     7,     8,     9,    10,     0,     0,     0,     0,
-       0,     0,     0,     5,    35,    19,    20,     0,     0,     0,
-       0,     0,     0,    13,     0,     0,    25,    39,     0,     0,
-       0,     0,    17,     0,     0,     0,     0,    18,    12,    11,
-       0,     0,     0,    21,    30,    22,    31,    23,    32,    24,
-      33,    26,    36,    27,    37,    28,    38,    29,    34,    16,
-      14,    15
+       0,     0,     0,     5,     0,     0,     0,     0,     0,     0,
+      13,     0,     0,    17,    18,    19,    12,    11,     0,     0,
+       0,    16,    14,    15
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -12,   -12,   -12,   -12,   -12,   -12,   -12,   -12,   -12,    -6,
-      45,    -7,    13
+     -15,   -15,   -15,   -15,   -15,   -15,   -15,   -15,   -15,    -6,
+      28
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
       -1,     1,     9,    10,    11,    12,    13,    14,    15,    20,
-      17,    28,    29
+      17
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -626,24 +618,18 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      21,    22,    40,    41,    24,    25,    26,    16,     2,    45,
-      46,    30,    31,    27,     3,     4,     5,     6,     7,    19,
-      36,    23,    32,    33,    34,    35,    50,    48,    51,    52,
-       8,    53,    55,    57,    59,    49,    61,    63,    65,    67,
-      37,    38,    39,    40,    41,    69,    70,    71,    42,    18,
-       0,    54,    56,    58,    60,     0,    62,    64,    66,    68,
-      43,    44,    45,    46,     0,     0,     0,    47
+      21,    22,    24,    25,    26,    16,    19,     2,    23,    31,
+      29,    27,    28,     3,     4,     5,     6,     7,    30,    33,
+      32,    34,    35,    36,    38,    39,    40,    37,    41,     8,
+      42,    43,    18
 };
 
 static const yytype_int8 yycheck[] =
 {
-       6,     7,    13,    14,     3,     4,     5,    17,     0,    13,
-      14,    17,    18,    12,     6,     7,     8,     9,    10,    19,
-      27,    22,    15,    21,    20,    20,     3,    21,    34,    35,
-      22,    38,    39,    40,    41,    21,    43,    44,    45,    46,
-      27,    11,    12,    13,    14,    16,    21,    21,    18,     4,
-      -1,    38,    39,    40,    41,    -1,    43,    44,    45,    46,
-      11,    12,    13,    14,    -1,    -1,    -1,    18
+       6,     7,     3,     4,     5,    17,    19,     0,    22,    20,
+      15,    17,    18,     6,     7,     8,     9,    10,    21,    18,
+      20,    18,    18,    21,     3,    31,    32,    21,    16,    22,
+      21,    21,     4
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -652,30 +638,23 @@ static const yytype_int8 yystos[] =
 {
        0,    24,     0,     6,     7,     8,     9,    10,    22,    25,
       26,    27,    28,    29,    30,    31,    17,    33,    33,    19,
-      32,    32,    32,    22,     3,     4,     5,    12,    34,    35,
-      32,    32,    15,    21,    20,    20,    34,    35,    11,    12,
-      13,    14,    18,    11,    12,    13,    14,    18,    21,    21,
-       3,    32,    32,    34,    35,    34,    35,    34,    35,    34,
-      35,    34,    35,    34,    35,    34,    35,    34,    35,    16,
-      21,    21
+      32,    32,    32,    22,     3,     4,     5,    32,    32,    15,
+      21,    20,    20,    18,    18,    18,    21,    21,     3,    32,
+      32,    16,    21,    21
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
        0,    23,    24,    24,    25,    25,    26,    26,    26,    26,
-      26,    27,    28,    29,    30,    31,    32,    33,    33,    34,
-      34,    34,    34,    34,    34,    34,    34,    34,    34,    34,
-      34,    34,    34,    34,    34,    35,    35,    35,    35,    35
+      26,    27,    28,    29,    30,    31,    32,    33,    33,    33
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
        0,     2,     0,     2,     1,     2,     1,     1,     1,     1,
-       1,     4,     4,     3,     5,     5,     4,     3,     3,     1,
-       1,     3,     3,     3,     3,     2,     3,     3,     3,     3,
-       3,     3,     3,     3,     3,     1,     3,     3,     3,     2
+       1,     4,     4,     3,     5,     5,     4,     3,     3,     3
 };
 
 
@@ -1371,278 +1350,150 @@ yyreduce:
   switch (yyn)
     {
   case 5:
-#line 40 "parser.y"
+#line 57 "parser.y"
                { }
-#line 1377 "parser.tab.c"
+#line 1356 "parser.tab.c"
     break;
 
   case 6:
-#line 43 "parser.y"
+#line 60 "parser.y"
               { }
-#line 1383 "parser.tab.c"
+#line 1362 "parser.tab.c"
     break;
 
   case 7:
-#line 44 "parser.y"
+#line 61 "parser.y"
                     { }
-#line 1389 "parser.tab.c"
+#line 1368 "parser.tab.c"
     break;
 
   case 8:
-#line 45 "parser.y"
+#line 62 "parser.y"
                    { }
-#line 1395 "parser.tab.c"
+#line 1374 "parser.tab.c"
     break;
 
   case 9:
-#line 46 "parser.y"
+#line 63 "parser.y"
                     { }
-#line 1401 "parser.tab.c"
+#line 1380 "parser.tab.c"
     break;
 
   case 10:
-#line 47 "parser.y"
+#line 64 "parser.y"
                 { }
-#line 1407 "parser.tab.c"
+#line 1386 "parser.tab.c"
     break;
 
   case 11:
-#line 50 "parser.y"
+#line 67 "parser.y"
                                  { 
                 fprintf(yyout, "rz(0) q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-1].ival));
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-1].ival));
+                fprintf(yyout, "\n");
                 fprintf(yyout, "rz(");
-                fprintf(yyout, "%f", (yyvsp[-2].fval));
-                fprintf(yyout, ") q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-2].fval));
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-1].ival));
+                fprintf(yyout, "\n");
                 }
-#line 1428 "parser.tab.c"
+#line 1405 "parser.tab.c"
     break;
 
   case 12:
-#line 68 "parser.y"
+#line 83 "parser.y"
                                  { 
                 fprintf(yyout, "rz(");
-                fprintf(yyout, "%f", (yyvsp[-2].fval));
-                fprintf(yyout, ") q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-2].fval));
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-1].ival));
+                fprintf(yyout, "\n");
                 fprintf(yyout, "rz(0) q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-1].ival));
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-1].ival));
+                fprintf(yyout, "\n");
                 }
-#line 1449 "parser.tab.c"
+#line 1424 "parser.tab.c"
     break;
 
   case 13:
-#line 86 "parser.y"
+#line 99 "parser.y"
                              { 
                 fprintf(yyout, "rz(0) q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-1].ival));
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-1].ival));
+                fprintf(yyout, "\n");
                 }
-#line 1462 "parser.tab.c"
+#line 1437 "parser.tab.c"
     break;
 
   case 14:
-#line 96 "parser.y"
+#line 109 "parser.y"
                                           {
                 fprintf(yyout, "cz q[");
-                fprintf(yyout, "%i", (yyvsp[-3].ival));
-                fprintf(yyout, "], q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-3].ival));
+                fprintf(yyout, "\n");
                 }
-#line 1474 "parser.tab.c"
+#line 1447 "parser.tab.c"
     break;
 
   case 15:
-#line 105 "parser.y"
+#line 116 "parser.y"
                                           {
                 fprintf(yyout, "rz(0) q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-1].ival));
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-1].ival));
+                fprintf(yyout, "\n");
                 fprintf(yyout, "cz q[");
-                fprintf(yyout, "%i", (yyvsp[-3].ival));
-                fprintf(yyout, "], q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-3].ival));
+                fprintf(yyout, "\n");
                 fprintf(yyout, "rz(0) q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-1].ival));
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", (yyvsp[-1].ival));
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", (yyvsp[-1].ival));
+                fprintf(yyout, "\n");
                 }
-#line 1498 "parser.tab.c"
+#line 1469 "parser.tab.c"
     break;
 
   case 16:
-#line 126 "parser.y"
+#line 135 "parser.y"
                                        { (yyval.ival) = (yyvsp[-1].ival); }
-#line 1504 "parser.tab.c"
+#line 1475 "parser.tab.c"
     break;
 
   case 17:
-#line 129 "parser.y"
-                                   { (yyval.fval) = (yyvsp[-1].fval); }
-#line 1510 "parser.tab.c"
+#line 138 "parser.y"
+                                  { (yyval.fval) = (yyvsp[-1].ival); }
+#line 1481 "parser.tab.c"
     break;
 
   case 18:
-#line 130 "parser.y"
-                               { (yyval.fval) = (yyvsp[-1].ival); }
-#line 1516 "parser.tab.c"
+#line 139 "parser.y"
+                                 { (yyval.fval) = (yyvsp[-1].fval); }
+#line 1487 "parser.tab.c"
     break;
 
   case 19:
-#line 133 "parser.y"
-            { (yyval.fval) = (yyvsp[0].fval); }
-#line 1522 "parser.tab.c"
-    break;
-
-  case 20:
-#line 134 "parser.y"
-     { (yyval.fval) = M_PI; }
-#line 1528 "parser.tab.c"
-    break;
-
-  case 21:
-#line 135 "parser.y"
-                { (yyval.fval) = (yyvsp[-2].fval) + (yyvsp[0].fval); }
-#line 1534 "parser.tab.c"
-    break;
-
-  case 22:
-#line 136 "parser.y"
-                { (yyval.fval) = (yyvsp[-2].fval) - (yyvsp[0].fval); }
-#line 1540 "parser.tab.c"
-    break;
-
-  case 23:
-#line 137 "parser.y"
-                { (yyval.fval) = (yyvsp[-2].fval) * (yyvsp[0].fval); }
-#line 1546 "parser.tab.c"
-    break;
-
-  case 24:
-#line 138 "parser.y"
-                { (yyval.fval) = (yyvsp[-2].fval) / (yyvsp[0].fval); }
-#line 1552 "parser.tab.c"
-    break;
-
-  case 25:
-#line 139 "parser.y"
-           { (yyval.fval) = 0 - (yyvsp[0].fval) ; }
-#line 1558 "parser.tab.c"
-    break;
-
-  case 26:
 #line 140 "parser.y"
-               { (yyval.fval) = (yyvsp[-2].ival) + (yyvsp[0].fval); }
-#line 1564 "parser.tab.c"
-    break;
-
-  case 27:
-#line 141 "parser.y"
-               { (yyval.fval) = (yyvsp[-2].ival) - (yyvsp[0].fval); }
-#line 1570 "parser.tab.c"
-    break;
-
-  case 28:
-#line 142 "parser.y"
-               { (yyval.fval) = (yyvsp[-2].ival) * (yyvsp[0].fval); }
-#line 1576 "parser.tab.c"
-    break;
-
-  case 29:
-#line 143 "parser.y"
-               { (yyval.fval) = (yyvsp[-2].ival) / (yyvsp[0].fval); }
-#line 1582 "parser.tab.c"
-    break;
-
-  case 30:
-#line 144 "parser.y"
-               { (yyval.fval) = (yyvsp[-2].fval) + (yyvsp[0].ival); }
-#line 1588 "parser.tab.c"
-    break;
-
-  case 31:
-#line 145 "parser.y"
-               { (yyval.fval) = (yyvsp[-2].fval) - (yyvsp[0].ival); }
-#line 1594 "parser.tab.c"
-    break;
-
-  case 32:
-#line 146 "parser.y"
-               { (yyval.fval) = (yyvsp[-2].fval) * (yyvsp[0].ival); }
-#line 1600 "parser.tab.c"
-    break;
-
-  case 33:
-#line 147 "parser.y"
-               { (yyval.fval) = (yyvsp[-2].fval) / (yyvsp[0].ival); }
-#line 1606 "parser.tab.c"
-    break;
-
-  case 34:
-#line 148 "parser.y"
-              { (yyval.fval) = (float)(yyvsp[-2].ival) / (float)(yyvsp[0].ival); }
-#line 1612 "parser.tab.c"
-    break;
-
-  case 35:
-#line 151 "parser.y"
-         { (yyval.ival) = (yyvsp[0].ival); }
-#line 1618 "parser.tab.c"
-    break;
-
-  case 36:
-#line 152 "parser.y"
-              { (yyval.ival) = (yyvsp[-2].ival) + (yyvsp[0].ival); }
-#line 1624 "parser.tab.c"
-    break;
-
-  case 37:
-#line 153 "parser.y"
-              { (yyval.ival) = (yyvsp[-2].ival) - (yyvsp[0].ival); }
-#line 1630 "parser.tab.c"
-    break;
-
-  case 38:
-#line 154 "parser.y"
-              { (yyval.ival) = (yyvsp[-2].ival) * (yyvsp[0].ival); }
-#line 1636 "parser.tab.c"
-    break;
-
-  case 39:
-#line 155 "parser.y"
-          { (yyval.ival) = 0 - (yyvsp[0].ival) ; }
-#line 1642 "parser.tab.c"
+                              { (yyval.fval) = (yyvsp[-1].pi); }
+#line 1493 "parser.tab.c"
     break;
 
 
-#line 1646 "parser.tab.c"
+#line 1497 "parser.tab.c"
 
       default: break;
     }
@@ -1874,14 +1725,14 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 159 "parser.y"
+#line 144 "parser.y"
 
 
 int main() {
-	yyin = fopen("./input.qasm", "r");
-    yyout = fopen("./output.qasm", "w+");
+	yyin = fopen("./input examples/qft.qasm", "r");
+    yyout = fopen("./outputs/qft.qasm", "w+");
 	do {
-		yyparse();
+		yyparse(); /* Yacc/Bison parser */
 	} while(!feof(yyin));
     fclose(yyout);
 	return 0;

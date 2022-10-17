@@ -1,0 +1,10 @@
+h q[0];
+h q[1];
+cz q[0],q[1];
+rz(-pi) q[0];
+h q[0];
+rx(pi) q[0];
+cx q[0],q[1];
+rx(pi) q[0];
+h q[0];
+rz(pi) q[1];

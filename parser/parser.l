@@ -1,34 +1,32 @@
 %{
 #include <stdio.h>
-#include <math.h> // needed for call to atof() below
 
 #define YY_DECL int yylex()
 
-#include "compiler.tab.h"
-
+/* parser.tab.h includes definitions of tokens and yylval */
+#include "parser.tab.h"
 %}
 
 /* Token Definitions */
 
-integer [1-9]+[0-9]*|0
-float   [0-9]+\.[0-9]+
+int     [-+]?[1-9]+[0-9]*|0
+float   [-+]?[0-9]+\.[0-9]+
+pi      [-+]?((({int}|{float})[*\/])*pi([*]({int}|{float})|[\/]([1-9]+[0-9]*|[0-9]+\.[0-9]*[1-9]+[0-9]*))*)
 
-/* Regular Expressions defining the Tokens for PhotonQ Compiler */
-/* pattern + action */
+
+/* Regular Expressions (pattern description) defining the Tokens for PhotonQ Compiler */
+/* The semantic value of tokens is stored in the corresponding union member of yylval */
+
 %%
 
-{integer}	{yylval.ival = atoi(yytext); return INT;}
-{float} 	{yylval.fval = atof(yytext); return FLOAT;}
-"pi"    { return PI; }
+{int}	{ yylval.ival = yytext; return INT;}
+{float} { yylval.fval = yytext; return FLOAT;}
+{pi}    { yylval.pi = yytext; return PI; }
 "rz"    { return RZ; }
 "rx"    { return RX; }
 "h"     { return HAD; }
 "cz"    { return CZ; }
 "cx"    { return CX; }
-"+"     { return ADD; }
-"-"     { return SUB; }
-"*"     { return MUL; }
-"/"     { return DIV; }
 "["     { return LEFTBRACK; }
 "]"     { return RIGHTBRACK; }
 "("     { return LEFTPARENTH; }

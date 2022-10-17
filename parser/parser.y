@@ -1,7 +1,6 @@
 %{
-
-#include <stdio.h>  // For I/O
-#include <stdlib.h> // For malloc here and symbol table
+#include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 extern int yylex();
@@ -12,25 +11,43 @@ extern FILE* yyout;
 void yyerror(const char* s);
 %}
 
+/* Declaration of data types that semantic values may have */
+
 %union {
-    int ival;
-    float fval;
+    const char* ival;
+    const char* fval;
+    const char* pi;
 }
+
+/* Token declaration with no precedence or associativity */
 
 %token<ival> INT
 %token<fval> FLOAT 
-%token PI
+%token<pi> PI
 %token RZ RX HAD CZ CX
 %token ADD SUB MUL DIV LEFTBRACK RIGHTBRACK LEFTPARENTH RIGHTPARENTH
 %token QUBIT COMMA SEMICOLON EOL
 
+/* Declare token type that is left associative */
+
 %left ADD SUB
 %left MUL DIV
 
-%type<ival> exp qubit_
-%type<fval> expf arg
+/* Type declaration of semantic value for non-terminal symbols with 
+value types specified in %union section above */
+
+%type<ival> qubit_
+%type<fval> arg
+
 
 %%
+/* This section defines the PhotonQ compiler grammar rules
+
+<non-terminal symbol>: <various terminal and non-terminal 
+symbols put together> with optional {C code actions}
+
+Distinct rules are be joined with the vertical-bar | */
+
 
 input: /* empty */
 	   | input line
@@ -49,120 +66,88 @@ gate: rx_gate { }
 
 rx_gate: RX arg qubit_ SEMICOLON { 
                 fprintf(yyout, "rz(0) q[");
-                fprintf(yyout, "%i", $3);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $3);
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", $3);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $3);
+                fprintf(yyout, "\n");
                 fprintf(yyout, "rz(");
-                fprintf(yyout, "%f", $2);
-                fprintf(yyout, ") q[");
-                fprintf(yyout, "%i", $3);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $2);
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", $3);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $3);
+                fprintf(yyout, "\n");
                 }
 ;
 
 rz_gate: RZ arg qubit_ SEMICOLON { 
                 fprintf(yyout, "rz(");
-                fprintf(yyout, "%f", $2);
-                fprintf(yyout, ") q[");
-                fprintf(yyout, "%i", $3);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $2);
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", $3);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $3);
+                fprintf(yyout, "\n");
                 fprintf(yyout, "rz(0) q[");
-                fprintf(yyout, "%i", $3);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $3);
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", $3);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $3);
+                fprintf(yyout, "\n");
                 }
 ;
 
 h_gate: HAD qubit_ SEMICOLON { 
                 fprintf(yyout, "rz(0) q[");
-                fprintf(yyout, "%i", $2);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $2);
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", $2);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $2);
+                fprintf(yyout, "\n");
                 }
 ;
 
 cz_gate: CZ qubit_ COMMA qubit_	SEMICOLON {
                 fprintf(yyout, "cz q[");
-                fprintf(yyout, "%i", $2);
-                fprintf(yyout, "], q[");
-                fprintf(yyout, "%i", $4);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $2);
+                fprintf(yyout, "\n");
                 }
 ;
 
 cx_gate: CX qubit_ COMMA qubit_	SEMICOLON {
                 fprintf(yyout, "rz(0) q[");
-                fprintf(yyout, "%i", $4);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $4);
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", $4);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $4);
+                fprintf(yyout, "\n");
                 fprintf(yyout, "cz q[");
-                fprintf(yyout, "%i", $2);
-                fprintf(yyout, "], q[");
-                fprintf(yyout, "%i", $4);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $2);
+                fprintf(yyout, "\n");
                 fprintf(yyout, "rz(0) q[");
-                fprintf(yyout, "%i", $4);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $4);
+                fprintf(yyout, "\n");
                 fprintf(yyout, "h q[");
-                fprintf(yyout, "%i", $4);
-                fprintf(yyout, "];\n");
+                fprintf(yyout, "%s", $4);
+                fprintf(yyout, "\n");
                 }
 ;
 
 qubit_: QUBIT LEFTBRACK INT RIGHTBRACK { $$ = $3; }
 ;
 
-arg: LEFTPARENTH expf RIGHTPARENTH { $$ = $2; }
-| LEFTPARENTH exp RIGHTPARENTH { $$ = $2; }
-;
-
-expf: FLOAT { $$ = $1; }
-| PI { $$ = M_PI; }
-| expf ADD expf { $$ = $1 + $3; }
-| expf SUB expf { $$ = $1 - $3; }
-| expf MUL expf { $$ = $1 * $3; }
-| expf DIV expf { $$ = $1 / $3; }
-| SUB expf { $$ = 0 - $2 ; }
-| exp ADD expf { $$ = $1 + $3; }
-| exp SUB expf { $$ = $1 - $3; }
-| exp MUL expf { $$ = $1 * $3; }
-| exp DIV expf { $$ = $1 / $3; }
-| expf ADD exp { $$ = $1 + $3; }
-| expf SUB exp { $$ = $1 - $3; }
-| expf MUL exp { $$ = $1 * $3; }
-| expf DIV exp { $$ = $1 / $3; }
-| exp DIV exp { $$ = (float)$1 / (float)$3; }
-;
-
-exp: INT { $$ = $1; }
-| exp ADD exp { $$ = $1 + $3; }
-| exp SUB exp { $$ = $1 - $3; }
-| exp MUL exp { $$ = $1 * $3; }
-| SUB exp { $$ = 0 - $2 ; }
+arg: LEFTPARENTH INT RIGHTPARENTH { $$ = $2; }
+| LEFTPARENTH FLOAT RIGHTPARENTH { $$ = $2; }
+| LEFTPARENTH PI RIGHTPARENTH { $$ = $2; }
 ;
 
 
 %%
 
 int main() {
-	yyin = fopen("./input.qasm", "r");
-    yyout = fopen("./output.qasm", "w+");
+	yyin = fopen("./input examples/qft.qasm", "r");
+    yyout = fopen("./outputs/qft.qasm", "w+");
 	do {
-		yyparse();
+		yyparse(); /* Yacc/Bison parser */
 	} while(!feof(yyin));
     fclose(yyout);
 	return 0;

@@ -1729,8 +1729,8 @@ yyreturn:
 
 
 int main() {
-	yyin = fopen("./input examples/grover.qasm", "r");
-    yyout = fopen("./outputs/grover.qasm", "w+");
+	yyin = fopen("./input examples/phasekickback.qasm", "r");
+    yyout = fopen("./outputs/phasekickback.qasm", "w+");
 	do {
 		yyparse(); /* Yacc/Bison parser */
 	} while(!feof(yyin));
